@@ -1,9 +1,16 @@
+// --> Fichero de arranque de la aplicación.
 #!/usr/bin/env node
-var debug = require('debug')('quiz');
-var app = require('../app');
+var debug = require('debug')('quiz'); 	// : Importa el Módulo de depuración pasando le como parámetro del módulo 
+										//   de la aplicación.
+var app = require('../app');			// : Importa el fichero de la aplicación.
 
+// --> Definimos algunos parámetros 'port', haciendo uso del método set() haciendo que el parámetro tenga el valor '3000'
+//	   por defecto o el valor que tenga la variable de entorno 'process.env.PORT'.
+// 	   En otras palabras definimos el valor del puerto escuchador de la aplicación en el parámetro 'port'.
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+// --> Conectamos 'app' al puerto escuchador definido anteriormente, en este caso 'port', 
+// 	   pasandole un MiddleWare de Debugging.
+var server = app.listen( app.get('port'), function() {
+  		debug('Express server listening on port ' + server.address().port);
 });
