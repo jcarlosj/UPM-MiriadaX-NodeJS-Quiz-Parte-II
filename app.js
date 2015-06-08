@@ -10,7 +10,6 @@ var bodyParser = require('body-parser');
 
 // --> Importamos los Enrutadores (Tienen estructura de módulos)
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 // --> Creamos la aplicación (Generador de Closures)
 var app = express();
@@ -24,8 +23,12 @@ app.set('view engine', 'ejs');          // Jade (Renderizador de vistas por defe
 // --> Instalación de todos los MiddleWares importados.
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-
+app.use( favicon( __dirname + '/public/favicon.ico' ) ); // : MiddleWare que sirve un favicon a través de la 
+                                                            //   instalación del MiddleWare 'serve-favicon'. Se 
+                                                            //   recomienda incluir el favicon en la cabecera de
+                                                            //   la página HTML. Lo que permite tener uno para 
+                                                            //   cada página.
+                                                            //   <link rel="icon" href="../public/images/favicon.ico" type="image/x-icon" />
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,8 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // --> Instalación de los MiddleWares (Enrutadores) sobre los cuales estará definida la lógica de la aplicación.
 //     para ello hacemos uso de los Enrutadores, asociando la ruta a su gestor.
 //     NOTA: Aquí se han instalado los enrutadores con 'use', pero se deben instalar con 'get'
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', routes);       // : Este enrutador se ejecutará para los método: GET, POST, PUT, DELETE entre otras.
 
 // --> Instalación del MiddleWare que procesará todas las rutas no definidas en los enrutadores.
 //     Generando un error 404 de HTTP e invocando un MiddleWare de Error.

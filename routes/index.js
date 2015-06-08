@@ -10,7 +10,7 @@ router.get('/', function(req, res) {			// : Se ejecutará si la ruta está vacia
 												//   la ruta inicial creada para este enrutador en 'app.js',
 												//   para este caso siempre que la ruta vacia esté sobre '/'
 												//   (ver 'app.js', línea 39)
-  res.render('index', { title: 'Express' });	// : Renderiza el fichero 'index.js' que se encuentra en 'views', 
+  res.render('index', { title: 'Quiz' });	// : Renderiza el fichero 'index.js' que se encuentra en 'views', 
   												//   pasandole como parámetros algunos valores
 });
 

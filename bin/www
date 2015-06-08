@@ -1,5 +1,5 @@
-// --> Fichero de arranque de la aplicación.
 #!/usr/bin/env node
+// --> Fichero de arranque de la aplicación.
 var debug = require('debug')('quiz'); 	// : Importa el Módulo de depuración pasando le como parámetro del módulo 
 										//   de la aplicación.
 var app = require('../app');			// : Importa el fichero de la aplicación.
