@@ -7,6 +7,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var partials = require( 'express-partials' ); // : Importamos el nuevo MiddleWare que soportara 
+                                              //   funcionalidad vistas parciales o vistas con 
+                                              //   un marco común.
 
 // --> Importamos los Enrutadores (Tienen estructura de módulos)
 var routes = require('./routes/index');
@@ -21,6 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');          // Jade (Renderizador de vistas por defecto de Express)
 
 // --> Instalación de todos los MiddleWares importados.
+app .use( partials() );     // : Instalamos el nuevo MiddleWare importado en la aplicación.
 
 // uncomment after placing your favicon in /public
 app.use( favicon( __dirname + '/public/favicon.ico' ) ); // : MiddleWare que sirve un favicon a través de la 

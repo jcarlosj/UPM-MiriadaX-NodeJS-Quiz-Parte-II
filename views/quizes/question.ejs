@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta chatset="utf-8" />
-		<title><%= title %></title>
-		<link rel="stylesheet" type="text/css" href="../../public/stylesheets/style.css" />
-	</head>
-	<body>
-		<h2><%= title %>: el juego de las preguntas</h2>
-		<form method="get" action="/quizes/answer">
-			<label for="pregunta"><small><b>Pregunta:</b></small><br /> <%= pregunta %></label><br /> 
-			<input type="text" name="respuesta" placeholder="Responda aquí" />
-			<button type="submit">Enviar</button>
-		</form>
-	</body>
-</html>
+<form method="get" action="/quizes/answer">
+	<label for="pregunta"><small><b>Pregunta:</b></small><br /> <%= pregunta %></label><br /> 
+	<input type="text" name="respuesta" placeholder="Responda aquí" />
+	<button type="submit">Enviar</button>
+</form>
