@@ -34,3 +34,12 @@ footer {
 nav span {
 	margin: 0 10px 0 0;
 }
+
+footer ul li {
+	list-style: none;
+}
+
+img#github {
+	height: 30px;
+	width: 30px;
+}
