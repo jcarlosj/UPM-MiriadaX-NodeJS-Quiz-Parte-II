@@ -19,3 +19,30 @@ footer,
 input {
 	font-size: large;
 }
+
+table {
+    margin: auto;
+    width: 94%;
+}
+
+img#photo {
+	padding: 0 0 2% 0;
+	width: 94%;
+}
+
+.video-box {
+    margin: auto;
+    width: 94%;
+}
+
+div#course,
+div#author,
+div#profesion,
+div#claustro,
+div#correo,
+div#teacher {
+	float: right;
+	font-size: large;
+	width: 94%;
+	text-align: left;
+}

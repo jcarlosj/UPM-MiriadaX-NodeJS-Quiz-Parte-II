@@ -3,7 +3,6 @@ exports .question = function( req, res ) {
 	res .render( 
 		'quizes/question', 
 		{ 
-			title: 'Quiz',
 			pregunta: '¿Cuál es la capital de Italia?' 
 		} 
 	);
@@ -24,7 +23,6 @@ exports .answer = function( req, res ) {
 	res .render( 
 		'quizes/answer', 
 		{ 
-			title: 'Quiz',
 			respuesta: mensaje
 		} 
 	);

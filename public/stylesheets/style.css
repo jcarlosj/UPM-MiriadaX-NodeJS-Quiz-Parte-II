@@ -43,3 +43,52 @@ img#github {
 	height: 30px;
 	width: 30px;
 }
+
+table {
+	margin:auto;
+	width: 80%;
+}
+
+#creditos {
+	display: block;
+ 	margin: auto;
+    width: 80%;
+}
+
+img#photo {
+	float: left;
+	padding: 0 0 2% 0;
+	width: 18%;
+}
+
+div#course,
+div#author,
+div#profesion,
+div#claustro,
+div#correo,
+div#teacher {
+	float: right;
+	width: 80%;
+	text-align: left;
+}
+
+.video-box {
+	clear: both;
+    margin: auto;
+    width: 80%;
+}
+
+.video{
+    height:0px;
+    padding-top:56.25%;
+    position: relative;
+    width: 100%;
+}
+
+iframe{
+    height:100%;
+    left:0px;
+    position: absolute;
+    top:0px;
+    width:100%;
+}
