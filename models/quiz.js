@@ -6,7 +6,7 @@ module .exports = function( sequelize, DataTypes ) {
 	return sequelize .define(
 		'Quiz', 	// Nombre de la tabla.
 		{			// Campos de la tabla.
-			preguntas:  DataTypes .STRING,
+			pregunta:  DataTypes .STRING,
 			respuesta: DataTypes .STRING,
 		}
 	);
