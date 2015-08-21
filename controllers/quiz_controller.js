@@ -1,30 +1,36 @@
+var models = require( '../models/models.js' );	//; Importamos el modelo
+
 // GET /quizes/question
 exports .question = function( req, res ) {
-	res .render( 
-		'quizes/question', 
-		{ 
-			pregunta: '¿Cuál es la capital de Italia?' 
-		} 
-	);
+	models .Quiz .findAll() .success( function( quiz ) { 	//: '.findAll()' devuelve un array con los elementos que tiene la BD.
+		res .render( 
+			'quizes/question', 
+			{ 
+				pregunta: quiz[ 0 ] .pregunta
+			} 
+		);
+	});
 };
 
 // GET /quizes/answer
 exports .answer = function( req, res ) {
-	
-	var mensaje = '';
+	models .Quiz .findAll() .success( function( quiz ) {	//: '.findAll()' devuelve un array con los elementos que tiene la BD.
 
-	if( req .query .respuesta === 'Roma' ) {
-		mensaje = 'Correcto';
-	}
-	else {
-		mensaje = 'Incorrecto';
-	}
-	
-	res .render( 
-		'quizes/answer', 
-		{ 
-			respuesta: mensaje
-		} 
-	);
+		var mensaje = '';
 
+		if( req .query .respuesta === quiz[ 0 ] .respuesta ) {
+			mensaje = 'Correcto';
+		}
+		else {
+			mensaje = 'Incorrecto';
+		}
+		
+		res .render( 
+			'quizes/answer', 
+			{ 
+				respuesta: mensaje
+			} 
+		);
+
+	});
 };
