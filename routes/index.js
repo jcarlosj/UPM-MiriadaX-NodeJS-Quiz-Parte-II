@@ -39,6 +39,12 @@ router .get( '/author', function( req, res ) {			// : Se ejecutará si la ruta e
 
 });
 
+// --> Autoload de comandos con: quizId. 
+//     Instalamos el metodo '.param()' de 'express' para que invoque 'quizController .load' solo si el parametro 'quizId' existe
+//     en algun lugar del 'path' o 'URL' de la direccion, antes que lo requieran los 'path' para los 'routers': 
+//     'quizController .show' y 'quizController .answer' 
+router .param( 'quizId', quizController .load );	//:  entonces se ejecuta autoLoad: quiz
+
 // --> Instalamos los MiddleWares al enrutador, asignandole los PATH ( index, show y answer )
 router .get( '/quizes', quizController .index );
 router .get( '/quizes/:quizId(\\d+)', quizController .show );
