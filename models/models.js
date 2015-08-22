@@ -41,17 +41,24 @@ exports .Quiz = Quiz;
 //   la tabla de preguntas 'Quiz' en la BD. Ahora instalamos un 'Callback' ('function') con la funcion '.success()' que
 //   Esta funci[on lo que permitira es que no se ejecute la sentencia siguiente hasta que no se halla 
 //   sincronizado la tabla de la BD.
-sequelize .sync() .success( function() {
-	//-> success() ejecuta el manejador una vez creada la tabla.
-	Quiz .count() .success( function( count ) {
+sequelize .sync() .then( function() {
+	//-> cambiamos '.success()' por '.then' haciendo uso de las promises de JS 
+	//   y ejecutamos el manejador una vez creada la tabla.
+	Quiz .count() .then( function( count ) {
 		//-> La tabla se inicializa solo si esta vacia.
 		if( count === 0 ) {
 			Quiz .create(
 				{
 					pregunta: 'Capital de Italia',
-					respuesta: 'Roma'
+					respuesta: 'Roma'					
 				}
-			) .success( function() {
+			);
+			Quiz .create(
+				{
+					pregunta: 'Capital de Portugal',
+					respuesta: 'Lisboa'
+				}
+			) .then( function() {
 				console .log( 'Base de datos inicializada.' );
 			});
 		}

@@ -39,9 +39,10 @@ router .get( '/author', function( req, res ) {			// : Se ejecutará si la ruta e
 
 });
 
-// --> Instalamos los MiddleWares al enrutador, asignandole los PATH ( answer y question )
-router .get( '/quizes/question', quizController .question );
-router .get( '/quizes/answer', quizController .answer );
+// --> Instalamos los MiddleWares al enrutador, asignandole los PATH ( index, show y answer )
+router .get( '/quizes', quizController .index );
+router .get( '/quizes/:quizId(\\d+)', quizController .show );
+router .get( '/quizes/:quizId(\\d+)/answer', quizController .answer );
 
 // --> Exportamos 'router' para comando de arranque.
 module.exports = router;

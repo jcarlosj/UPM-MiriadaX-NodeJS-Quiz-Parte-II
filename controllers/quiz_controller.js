@@ -1,24 +1,27 @@
 var models = require( '../models/models.js' );	//; Importamos el modelo
 
-// GET /quizes/question
-exports .question = function( req, res ) {
-	models .Quiz .findAll() .success( function( quiz ) { 	//: '.findAll()' devuelve un array con los elementos que tiene la BD.
+// GET /quizes/:id
+exports .show = function( req, res ) {
+	// '.then()' reemplaza a '.success()' pues es el nuevo patron de estructuracion de composicion de 'Callbacks' que se llaman 'Promises'.  
+	models .Quiz .find( req .params .quizId ) .then( function( quiz ) { 	//: '.find()' espera unos parametros de busqueda y deacuerdo a ellos
+																			//: devuelve un array con los elementos que tiene la BD.
 		res .render( 
-			'quizes/question', 
+			'quizes/show', 
 			{ 
-				pregunta: quiz[ 0 ] .pregunta
+				quiz: quiz
 			} 
 		);
 	});
 };
 
-// GET /quizes/answer
+// GET /quizes/:id/answer
 exports .answer = function( req, res ) {
-	models .Quiz .findAll() .success( function( quiz ) {	//: '.findAll()' devuelve un array con los elementos que tiene la BD.
+	models .Quiz .find( req .params .quizId ) .then( function( quiz ) {		//: '.find()' espera unos parametros de busqueda y deacuerdo a ellos
+																			//: devuelve un array con los elementos que tiene la BD.
 
 		var mensaje = '';
 
-		if( req .query .respuesta === quiz[ 0 ] .respuesta ) {
+		if( req .query .respuesta === quiz .respuesta ) {
 			mensaje = 'Correcto';
 		}
 		else {
@@ -28,9 +31,22 @@ exports .answer = function( req, res ) {
 		res .render( 
 			'quizes/answer', 
 			{ 
-				respuesta: mensaje
+				respuesta: mensaje,
+				quiz: quiz
 			} 
 		);
 
+	});
+};
+
+// GET /quizes
+exports .index = function( req, res ) {
+	models .Quiz .findAll() .then( function( quizes) {		//: '.findAll()' devuelve un array con los elementos que tiene la BD.
+		res .render( 
+			'quizes/index.ejs',
+			{
+				quizes: quizes
+			}
+		);
 	});
 };
