@@ -51,14 +51,45 @@ exports .answer = function( req, res ) {
 
 // GET /quizes
 exports .index = function( req, res ) {
-	models .Quiz .findAll() .then( function( quizes) {		//: '.findAll()' devuelve un array con los elementos que tiene la BD.
-		res .render( 
-			'quizes/index.ejs',
+
+	// Valida si el 'path' (url) contiene el parametro 'search' con algun valor en el.
+	if( req .query .search ) {
+		var busqueda = req .query .search;			//: Asignamos el valor del parametro a una variable.
+		busqueda = busqueda .trim();				//: Quitamos los espacios de inicio y fin de la cadena buscada.
+		busqueda = busqueda .replace( ' ', '%' );	//: Reemplazamos los espacios en blanco por un % (porciento)
+		busqueda = '%' + busqueda + '%';			//: Agregamos al principio y al final un % (porciento)
+		console .log( '> ' + busqueda );
+
+		// Consulta a la BD con el filtro para realizar una busqueda especifica
+		models .Quiz .findAll( 
 			{
-				quizes: quizes
+				where: [ 'pregunta like ?', busqueda ],
+				order: 'pregunta ASC'
 			}
-		);
-	}) .catch( function( error ) {
-		next( error );
-	});
+		) .then( function( quizes ) {
+			res .render( 
+				'quizes/index',
+				{
+					quizes: quizes
+				}
+			);
+		}) .catch( function( error ) {
+			next( error );
+		});
+
+	}
+	else {
+		// Valores que se listaran por defecto
+		models .Quiz .findAll() .then( function( quizes ) {
+			res .render(
+				'quizes/index',
+				{
+					quizes: quizes
+				}
+			);
+		}) .catch( function( error ) {
+			next( error );
+		});
+	}
+
 };
